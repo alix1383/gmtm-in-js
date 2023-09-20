@@ -14,9 +14,9 @@ __webpack_require__.r(__webpack_exports__);
 const apiKey = "48C492C360B333B72443EAF98303ADFB";
 
 const api = new _modules_steamApi__WEBPACK_IMPORTED_MODULE_0__.SteamApi(apiKey);
-// console.log(await api.generateNewToken("test123", 730));
 console.log(await api.getServersList());
 
+// console.log(await api.generateNewToken("test123", 730));
 //?
 
 // import { SteamApi } from "./modules/steamApi";
@@ -42,7 +42,7 @@ console.log(await api.getServersList());
 //         const api = new SteamApi(getTokenFromDB());
 //         const serverList = await api.getServersList();
 //         showTabelData(serverList);
-//         //! show Logout Buttom
+//         //! show Logout button
 //         logoutButton.style.display = "";
 //     } else {
 //         showLoginComponent();
@@ -93,7 +93,7 @@ class SteamApi {
   }
   async checkToken() {
     try {
-      const response = await this.axios.get(`GetAccountList/v1/?key=${this.apiKey}`);
+      const response = await this.axios.get(`GetAccountList/v1/?key=${this.apiKey}&input_json`);
       const data = response.data.response;
 
       //! this check if (is_banned === true) or failed to login return false
@@ -109,7 +109,7 @@ class SteamApi {
   }
   async getServersList() {
     try {
-      const response = await this.axios.get(`GetAccountList/v1/?key=${this.apiKey}`);
+      const response = await this.axios.get(`GetAccountList/v1/?key=${this.apiKey}&input_json`);
       const listData = response.data.response.servers;
       return listData;
     } catch (error) {

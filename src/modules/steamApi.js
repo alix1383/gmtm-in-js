@@ -24,7 +24,7 @@ class SteamApi {
     async checkToken() {
         try {
             const response = await this.axios.get(
-                `GetAccountList/v1/?key=${this.apiKey}`
+                `GetAccountList/v1/?key=${this.apiKey}&input_json`
             );
             const data = response.data.response;
 
@@ -43,7 +43,7 @@ class SteamApi {
     async getServersList() {
         try {
             const response = await this.axios.get(
-                `GetAccountList/v1/?key=${this.apiKey}`
+                `GetAccountList/v1/?key=${this.apiKey}&input_json`
             );
             const listData = response.data.response.servers;
             return listData;
