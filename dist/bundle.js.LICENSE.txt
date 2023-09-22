@@ -1,0 +1,88 @@
+/**
+ * @license
+ * Lodash <https://lodash.com/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+//! //! change Button attribute
+
+//! Append Childs
+
+//! Append to main Node
+
+//! Change Button Text
+
+//! Check APi Key is Oky
+
+//! Defind Elements
+
+//! Define Input Elements
+
+//! Generate New Token Submit Event
+
+//! Get Token From DB
+
+//! New Token Button on click event
+
+//! Show Logout & Generate Token Button in header
+
+//! Show Token List
+
+//! UnHide tabel tag
+
+//! cerate Tabel Rows
+
+//! change Button attribute
+
+//! check client logged in or Not
+
+//! check input not empty
+
+//! check inputs
+
+//! clear previous List
+
+//! convert array to html element and show them
+
+//! copy object to new variable to better access
+
+//! create Html Elements
+
+//! get Api Key From DB
+
+//! if Api Key is oky. DO =>
+
+//! ignore error
+
+//! logout Button On Click event
+
+//! prevent Events
+
+//! reload Page
+
+//! remove hidden attribut form element
+
+//! remove hidden attribute login form
+
+//! replace space with "-"
+
+//! sadly i can`t use axios for this request :(
+
+//! save ApiKey to DB
+
+//! set Data
+
+//! set class
+
+//! show error message if token have issuse
+
+//! show login Form
+
+//! then call the api and revice token list
+
+//! this check if (is_banned === true) or failed to login return false
+
+//! this line get token input text then remove spaces

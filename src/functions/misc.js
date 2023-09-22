@@ -1,7 +1,8 @@
-// import { showLoginComponent } from "../components/form";
-// import { hideTabelData } from "../components/tableData";
+import { SteamApi } from "../modules/steamApi";
+import { renderTabelDataComponent } from "../components/tableData";
+
 function isLoggedin() {
-    const token = getTokenFromDB();
+    const token = getApiKeyFromDB();
     if (token && token !== null && token !== "") {
         return true;
     } else {
@@ -9,26 +10,62 @@ function isLoggedin() {
     }
 }
 
+function removeSpaceFromString(value) {
+    return value.split(" ").join("");
+}
 
-// function removeBtn() {
-//     const logoutBtn = document.getElementById("logoutBtn");
-//     logoutBtn.addEventListener("click", () => {
-//         removeTokenFromDB();
-//         hideTabelData();
-//         logoutBtn.setAttribute("hidden", "");
-//         showLoginComponent();
-//     });
-// }
+function replaceSpaceWithDashString(value) {
+    return value.split(" ").join("-");
+}
 
-function setTokenToDB(apiKey) {
+function clearInputValue() {
+    document.getElementById("apiKeyFrom").value = null;
+}
+
+function setApiKeyToDB(apiKey) {
     sessionStorage.setItem("apiKey", apiKey);
 }
 
-function getTokenFromDB() {
+function getApiKeyFromDB() {
     return sessionStorage.getItem("apiKey");
 }
 function removeTokenFromDB() {
     sessionStorage.removeItem("apiKey");
 }
 
-export { isLoggedin, setTokenToDB, getTokenFromDB, removeTokenFromDB };
+async function checkApiKeyIsOky(value) {
+    return await new SteamApi(value).checkToken();
+}
+
+function getTokenList(apiKey) {
+    const api = new SteamApi(apiKey);
+    return api.getServersList();
+}
+
+async function showList() {
+    //! Get Token From DB
+    const token = getApiKeyFromDB();
+
+    //! then call the api and revice token list
+    const arrayList = await getTokenList(token);
+
+    //! convert array to html element and show them
+    renderTabelDataComponent(arrayList);
+
+    //! Show Logout & Generate Token Button in header
+    document.getElementById("logoutButton").style.display = "";
+    document.getElementById("createNewTokenButton").style.display = "";
+}
+
+export {
+    clearInputValue,
+    isLoggedin,
+    setApiKeyToDB,
+    getApiKeyFromDB,
+    removeTokenFromDB,
+    removeSpaceFromString,
+    replaceSpaceWithDashString,
+    getTokenList,
+    showList,
+    checkApiKeyIsOky,
+};
