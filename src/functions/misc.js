@@ -1,71 +1,71 @@
-import { SteamApi } from "../modules/steamApi";
-import { renderTabelDataComponent } from "../components/tableData";
+import { SteamApi } from '../modules/steamApi'
+import { renderTabelDataComponent } from '../components/tableData'
 
-function isLoggedin() {
-    const token = getApiKeyFromDB();
-    if (token && token !== null && token !== "") {
-        return true;
-    } else {
-        return false;
-    }
+function isLoggedin () {
+  const token = getApiKeyFromDB()
+  if (token && token !== null && token !== '') {
+    return true
+  } else {
+    return false
+  }
 }
 
-function removeSpaceFromString(value) {
-    return value.split(" ").join("");
+function removeSpaceFromString (value) {
+  return value.split(' ').join('')
 }
 
-function replaceSpaceWithDashString(value) {
-    return value.split(" ").join("-");
+function replaceSpaceWithDashString (value) {
+  return value.split(' ').join('-')
 }
 
-function clearInputValue() {
-    document.getElementById("apiKeyFrom").value = null;
+function clearInputValue () {
+  document.getElementById('apiKeyFrom').value = null
 }
 
-function setApiKeyToDB(apiKey) {
-    sessionStorage.setItem("apiKey", apiKey);
+function setApiKeyToDB (apiKey) {
+  sessionStorage.setItem('apiKey', apiKey)
 }
 
-function getApiKeyFromDB() {
-    return sessionStorage.getItem("apiKey");
+function getApiKeyFromDB () {
+  return sessionStorage.getItem('apiKey')
 }
-function removeTokenFromDB() {
-    sessionStorage.removeItem("apiKey");
-}
-
-async function checkApiKeyIsOky(value) {
-    return await new SteamApi(value).checkToken();
+function removeTokenFromDB () {
+  sessionStorage.removeItem('apiKey')
 }
 
-function getTokenList(apiKey) {
-    const api = new SteamApi(apiKey);
-    return api.getServersList();
+async function checkApiKeyIsOky (value) {
+  return await new SteamApi(value).checkToken()
 }
 
-async function showList() {
-    //! Get Token From DB
-    const token = getApiKeyFromDB();
+function getTokenList (apiKey) {
+  const api = new SteamApi(apiKey)
+  return api.getServersList()
+}
 
-    //! then call the api and revice token list
-    const arrayList = await getTokenList(token);
+async function showList () {
+  //! Get Token From DB
+  const token = getApiKeyFromDB()
 
-    //! convert array to html element and show them
-    renderTabelDataComponent(arrayList);
+  //! then call the api and revice token list
+  const arrayList = await getTokenList(token)
 
-    //! Show Logout & Generate Token Button in header
-    document.getElementById("logoutButton").style.display = "";
-    document.getElementById("createNewTokenButton").style.display = "";
+  //! convert array to html element and show them
+  renderTabelDataComponent(arrayList)
+
+  //! Show Logout & Generate Token Button in header
+  document.getElementById('logoutButton').style.display = ''
+  document.getElementById('createNewTokenButton').style.display = ''
 }
 
 export {
-    clearInputValue,
-    isLoggedin,
-    setApiKeyToDB,
-    getApiKeyFromDB,
-    removeTokenFromDB,
-    removeSpaceFromString,
-    replaceSpaceWithDashString,
-    getTokenList,
-    showList,
-    checkApiKeyIsOky,
-};
+  clearInputValue,
+  isLoggedin,
+  setApiKeyToDB,
+  getApiKeyFromDB,
+  removeTokenFromDB,
+  removeSpaceFromString,
+  replaceSpaceWithDashString,
+  getTokenList,
+  showList,
+  checkApiKeyIsOky
+}
